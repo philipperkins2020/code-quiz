@@ -1,3 +1,14 @@
+let countdownEl = document.getElementById("countdown");
+let startQuizEl = document.getElementById("start-quiz");
+let sendMessage= ""
+var highScores = "";
+var secondsLeft = 60;
+var timeLeft = "";
+var userName = "";
+var userScore = "";
+var userAnswers = "";
+var currentQuestion = 0
+
 let Questions = [
     {
         title: "Commonly used data types DO NOT include:",
@@ -63,7 +74,7 @@ function checkAnswer(userChoice, realAnswer) {
        alert("correct")
     }
     else {
-        alert("wrong")
+        secondsLeft-=10;
     }
     if (currentQuestion !== (Questions.length - 1)) {
         currentQuestion++
@@ -77,7 +88,7 @@ function checkAnswer(userChoice, realAnswer) {
 function setTime() {
     let timerInterval = setInterval(function() {
       secondsLeft--;
-      timeEl.textContent = secondsLeft + " You have 60 seconds to complete this quiz";
+      countdownEl.textContent = secondsLeft + "seconds left"
   
       if(secondsLeft === 0) {
         // Stops execution of action at set interval
@@ -86,16 +97,18 @@ function setTime() {
         sendMessage("Game Over");
       }
   
-    }, 6000);
+    }, 1000);
   }
 
-let countdownEl = document.getElementById("countdown");
-let startQuizEl = document.getElementById("start-quiz")
 
-//startQuizEl.addEventListener(“click”, function () {
-    //setTime();
+
+startQuizEl.addEventListener("click", function () {
+    setTime();
+    
+    displayQuestion(Questions[currentQuestion])
+
  
-
+})
 
 
   //let count = localStorage.getItem("count");
@@ -105,12 +118,6 @@ let startQuizEl = document.getElementById("start-quiz")
   
   
 
-var highScores = "";
-var secondsLeft = 100;
-var timeLeft = "";
-var userName = "";
-var userScore = "";
-var userAnswers = "";
-var currentQuestion = 0
+
 
 displayQuestion(Questions[currentQuestion])
