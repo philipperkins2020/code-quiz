@@ -1,6 +1,7 @@
+//Variables to use in the functions
 let countdownEl = document.getElementById("countdown");
 let startQuizEl = document.getElementById("start-quiz");
-var scoreSubmit = document.getElementById("submit-btn");
+let scoreSubmit = document.getElementById("submit-btn");
 let sendMessage = ""
 let highScores = "";
 let secondsLeft = 60;
@@ -10,6 +11,7 @@ var userScore = "";
 var userAnswers = "";
 var currentQuestion = 0
 
+//Array for questions, choices, and correct answer
 let Questions = [
     {
         title: "Commonly used data types DO NOT include:",
@@ -40,20 +42,23 @@ let Questions = [
 ];
 
 
-
+//Function to display Questions
 function displayQuestion(question) {
+    //Variables to use for displaying questions and choices
     const questionText = question.title;
     const possibleChoices = question.choices;
+    //Hiding the questions before start quiz button is pressed
     document.getElementById("game").classList.remove('hide')
+    //
     document.getElementById("question").textContent = questionText
-
+    //
     document.getElementById("answers").innerHTML = ""
     for (let i = 0; i < possibleChoices.length; i++) {
-
+        //created button for choices
         let div = document.createElement('button')
-
+        //
         div.textContent = possibleChoices[i]
-
+        //
         div.addEventListener("click", function () {
 
             const userChoice = this.textContent
@@ -97,8 +102,6 @@ function setTime() {
         if (secondsLeft <= 0) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
-            // Calls function to create and append image
-            // sendMessage("Game Over");
             quizOver()
         }
 
@@ -113,9 +116,29 @@ function quizOver() {
     document.getElementById("question").textContent = "";
     document.getElementById("answers").innerHTML = "";
     document.getElementById("score-entry").classList.remove("hide");
+    renderScore();
+    
+    
+
+    
 
 }
 
+function renderScore() {
+    const highScores= document.getElementById("highScore")
+    let allScores = [];
+    if (localStorage.getItem("scores")) {
+        allScores = JSON.parse(localStorage.getItem('scores'));
+    }
+    if (allScores.length >0 ){
+        const li = document.createElement("li")
+        li.textContent=`${allScores[0].name} - ${allScores[0].score}`
+
+        highScores.appendChild(li);
+    }
+    for (var i = 0; i < allScores.length; i++) {
+    }
+}
 scoreSubmit.addEventListener("click", function () {
     let allScores = [];
     if (localStorage.getItem("scores")) {
