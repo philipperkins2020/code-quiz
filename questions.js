@@ -92,11 +92,10 @@ function checkAnswer(userChoice, realAnswer) {
         displayQuestion(Questions[currentQuestion])
     }
     else {
-        console.log("game-over")
         quizOver();
     }
 }
-// 
+// Function for the timer
 function setTime() {
     let timerInterval = setInterval(function () {
         secondsLeft--;
@@ -106,18 +105,20 @@ function setTime() {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
             quizOver()
-            console.log("gameover")
+            
         }
 
     }, 1000);
 }
-
+//Function for quiz over
 function quizOver() {
     let quizOver = document.getElementById("endgame");
     quizOver.textContent = "Thank you for taking the quiz, please submit your initials.";
     document.getElementById("question").textContent = "";
     document.getElementById("answers").innerHTML = "";
+    //Shows score entry when quiz is done
     document.getElementById("score-entry").classList.remove("hide");
+    //Hides the countdownn after quiz is completed
     document.getElementById("controls").classList.add("hide");
     
     
@@ -126,7 +127,7 @@ function quizOver() {
     
 
 }
-
+//Function for getting scores and storing in local storage
 function renderScore() {
     const highScores= document.getElementById("highScore")
     let allScores = [];
@@ -137,7 +138,8 @@ function renderScore() {
     if (allScores.length >0 ){
         allScores.sort(sortScores);
         console.log(allScores) 
-    for (var i = 0; i < 10; i++) {
+    //For loop to show top ten highscores
+        for (var i = 0; i < 10; i++) {
         
         const li = document.createElement("li")
         li.textContent=`${allScores[i].name} - ${allScores[i].score}`
@@ -150,7 +152,7 @@ function renderScore() {
     }
 }
 
-
+//Function to sort the scores highest to lowest
 function sortScores(a,b){
         
         if ( a.score < b.score ){
@@ -163,12 +165,12 @@ function sortScores(a,b){
 
 }
 
-
+//Refreshes page to go to the start quiz 
 goBack.addEventListener("click", function () {
     window.location.reload();
 })
 
-
+//Pushes scores to local storage
 scoreSubmit.addEventListener("click", function () {
     document.getElementById("highScoreContainer").classList.remove('hide')
     let allScores = [];
@@ -185,13 +187,7 @@ scoreSubmit.addEventListener("click", function () {
 
 
 
-
-
-
-
-
-
-
+//Function to start quiz and hide start quiz after you click
 startQuizEl.addEventListener("click", function () {
 
     startQuizEl.classList.add("hide");
