@@ -5,38 +5,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+   
     <title>Code Quiz Challenge</title>
 
 </head>
 
 <body>
+    <div class= "container"> 
     <h1>Coding Quiz</h1>
     <div class="quiz">
         <div id="game" class= "hide">
-
+           
             <div id="question"></div>
-            <div id="answers"></div>
+            <div id="answers" class = "d-grid gap-2"></div>
         </div>
-        <div class="controls">
+        <div id="controls">
             <p>Time Remaining: <span id="countdown">60</span></p>
-            <button class="btn" id="start-quiz">Start Quiz</button>
+            <button class="btn btn-outline-primary" id="start-quiz">Start Quiz</button>
         </div>
         <div id="endgame"></div>
         <div id="score-entry" class="hide">
-            <input name="initials" placeholder="Enter Your Initials here." id="initials" />
-            <button type="button" class="btn" id="submit-btn">Submit score</button>
+            <input name="initials" placeholder="Enter Your Initials here." class="form-control" id="initials" />
+            <button type="button" class="btn btn-outline-primary" id="submit-btn">Submit score</button>
         </div>
-        <div>
+        <div class="hide" id="highScoreContainer">
             <h2>Highscores</h2> 
             <ul id="highScore"></ul>
-            <button id="goBack">Go Back</button>
-            <button id="clear" value="reset">Clear Highscore</button>
+            <button id="goBack" class= "btn btn-outline-primary">Go Back</button>
+            
         </div>
-
     </div>
 
     <script src="questions.js"></script>
+</div>
 </body>
 
 </html>

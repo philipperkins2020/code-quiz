@@ -5,9 +5,13 @@ body {
     text-align: center;
     padding-top: 100px;
 }
-
-.btn {
-    background-color: aqua;
     
 
+#highScoreContainer {
+    max-width: 200px;
+    margin:0 auto;
+}
+#initials {
+    max-width: 200px;
+    margin:0 auto 20px;
 }
