@@ -6,6 +6,14 @@ In this assignment I created a Code Quiz that presents the user with 5 questions
 
 
 ## Usage
+![code-quiz-1](Assets/images/Screenshot(48).png)
+![code-quiz-1](Assets\images/Screenshot(49).png)
+![code-quiz-1](Assets\images/Screenshot(50).png)
+![code-quiz-1](Assets\images/Screenshot(51).png)
+![code-quiz-1](Assets\images/Screenshot(52).png)
+![code-quiz-1](Assets\images/Screenshot(53).png)
+![code-quiz-1](Assets\images/Screenshot(54).png)
+![code-quiz-1](Assets\images/Screenshot(55).png)
 
 
 ## Table of Contents 
