@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href= "style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Code Quiz Challenge</title>
 
 </head>
 
 <body>
     <h1>Coding Quiz</h1>
-    <div class= "quiz">
-    
-    <div id="question"></div>
-    <div id="answers"></div>
-    <div class="controls">
-        <p>Time Remaining: <span id="countdown">60</span></p>
-        <button class="btn" id="start-quiz">Start Quiz</button>
-      </div>
+    <div class="quiz">
+        <div id="game" class= "hide">
 
-
+            <div id="question"></div>
+            <div id="answers"></div>
+        </div>
+        <div class="controls">
+            <p>Time Remaining: <span id="countdown">60</span></p>
+            <button class="btn" id="start-quiz">Start Quiz</button>
+        </div>
+        <div id="endgame"></div>
+        <div id="score-entry" class="hide">
+            <input name="initials" placeholder="Enter Your Initials here." id="initials" />
+            <button type="button" class="btn" id="submit-btn">Submit score</button>
+        </div>
 
     </div>
 
-<script src = "questions.js"></script>  
+    <script src="questions.js"></script>
 </body>
+
 </html>

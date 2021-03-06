@@ -1,9 +1,10 @@
 let countdownEl = document.getElementById("countdown");
 let startQuizEl = document.getElementById("start-quiz");
-let sendMessage= ""
-var highScores = "";
-var secondsLeft = 60;
-var timeLeft = "";
+var scoreSubmit = document.getElementById("submit-btn");
+let sendMessage = ""
+let highScores = "";
+let secondsLeft = 60;
+let scoreEntry = 0
 var userName = "";
 var userScore = "";
 var userAnswers = "";
@@ -43,7 +44,7 @@ let Questions = [
 function displayQuestion(question) {
     const questionText = question.title;
     const possibleChoices = question.choices;
-
+    document.getElementById("game").classList.remove('hide')
     document.getElementById("question").textContent = questionText
 
     document.getElementById("answers").innerHTML = ""
@@ -71,10 +72,11 @@ function displayQuestion(question) {
 
 function checkAnswer(userChoice, realAnswer) {
     if (userChoice === realAnswer) {
-       alert("correct")
+        alert("correct")
+        scoreEntry += 5
     }
     else {
-        secondsLeft-=10;
+        secondsLeft -= 10;
     }
     if (currentQuestion !== (Questions.length - 1)) {
         currentQuestion++
@@ -82,42 +84,59 @@ function checkAnswer(userChoice, realAnswer) {
     }
     else {
         console.log("game over")
+        secondsLeft = 0;
+        quizOver();
     }
 }
 
 function setTime() {
-    let timerInterval = setInterval(function() {
-      secondsLeft--;
-      countdownEl.textContent = secondsLeft + "seconds left"
-  
-      if(secondsLeft === 0) {
-        // Stops execution of action at set interval
-        clearInterval(timerInterval);
-        // Calls function to create and append image
-        sendMessage("Game Over");
-      }
-  
+    let timerInterval = setInterval(function () {
+        secondsLeft--;
+        countdownEl.textContent = secondsLeft + "seconds left"
+
+        if (secondsLeft <= 0) {
+            // Stops execution of action at set interval
+            clearInterval(timerInterval);
+            // Calls function to create and append image
+            // sendMessage("Game Over");
+            quizOver()
+        }
+
     }, 1000);
-  }
+}
 
+function quizOver() {
+    let quizOver = document.getElementById("endgame");
+    quizOver.textContent = "Thank you for taking the quiz, please submit your initials.";
+    countdownEl.innerHTML = "";
+    startQuizEl.innerHTML = "";
+    document.getElementById("question").textContent = "";
+    document.getElementById("answers").innerHTML = "";
+    document.getElementById("score-entry").classList.remove("hide");
 
+}
+
+scoreSubmit.addEventListener("click", function () {
+    let allScores = [];
+    if (localStorage.getItem("scores")) {
+        allScores = JSON.parse(localStorage.getItem('scores'));
+    }
+    allScores.push({
+        name: document.getElementById('initials').value,
+        score: scoreEntry
+    });
+    localStorage.setItem("scores", JSON.stringify(allScores));
+})
 
 startQuizEl.addEventListener("click", function () {
+
     setTime();
-    
+
     displayQuestion(Questions[currentQuestion])
 
- 
+
 })
 
 
-  //let count = localStorage.getItem("count");
-
-  
-  
-  
-  
 
 
-
-displayQuestion(Questions[currentQuestion])
